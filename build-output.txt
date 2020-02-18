@@ -1,0 +1,215 @@
+arturh@host:~/projects/cargo-test-doc-docker$ docker build .
+Sending build context to Docker daemon  59.39kB
+Step 1/17 : FROM ekidd/rust-musl-builder:nightly-2020-01-26-openssl11 as build
+ ---> cacb78b9c3f8
+Step 2/17 : RUN rustup target add x86_64-unknown-linux-musl
+ ---> Using cache
+ ---> 4e47acb5f845
+Step 3/17 : COPY --chown=rust:rust . .
+ ---> f4b3f0e20508
+Step 4/17 : RUN cargo --version
+ ---> Running in 696e89f4b4be
+cargo 1.42.0-nightly (f6449ba23 2020-01-21)
+Removing intermediate container 696e89f4b4be
+ ---> 9cd05c1e577c
+Step 5/17 : RUN rustc --version
+ ---> Running in 8b29fc67278e
+rustc 1.42.0-nightly (6d3f4e0aa 2020-01-25)
+Removing intermediate container 8b29fc67278e
+ ---> 912de2ccfcdf
+Step 6/17 : RUN cargo test; echo $?
+ ---> Running in b266fc72f3c1
+   Compiling cargo-test-doc-docker v0.1.0 (/home/rust/src)
+    Finished test [unoptimized + debuginfo] target(s) in 0.32s
+     Running target/x86_64-unknown-linux-musl/debug/deps/cargo_test_doc_docker-7b40e7e5b47f49eb
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/x86_64-unknown-linux-musl/debug/deps/cargo_test_doc_docker-0bfec9752a7bec14
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+0
+Removing intermediate container b266fc72f3c1
+ ---> 8b3475f53dc6
+Step 7/17 : RUN cargo test --release --target=x86_64-unknown-linux-musl; echo $?
+ ---> Running in 6ce107fcbf2b
+   Compiling cargo-test-doc-docker v0.1.0 (/home/rust/src)
+    Finished release [optimized] target(s) in 0.27s
+     Running target/x86_64-unknown-linux-musl/release/deps/cargo_test_doc_docker-68af47cbbeaba391
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/x86_64-unknown-linux-musl/release/deps/cargo_test_doc_docker-8de2a507dec42f79
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+0
+Removing intermediate container 6ce107fcbf2b
+ ---> 29123a3b4c79
+Step 8/17 : RUN rustup toolchain install nightly; rustup default nightly; rustup target add x86_64-unknown-linux-musl
+ ---> Running in 40f304aff42c
+info: syncing channel updates for 'nightly-x86_64-unknown-linux-gnu'
+info: latest update on 2020-02-18, rust version 1.43.0-nightly (0176a9eef 2020-02-17)
+info: skipping nightly which is missing installed component 'clippy-preview'
+info: syncing channel updates for 'nightly-2020-02-17-x86_64-unknown-linux-gnu'
+info: latest update on 2020-02-17, rust version 1.43.0-nightly (5e7af4669 2020-02-16)
+info: downloading component 'cargo'
+info: downloading component 'clippy'
+info: downloading component 'rust-docs'
+info: downloading component 'rust-std'
+info: downloading component 'rustc'
+info: downloading component 'rustfmt'
+info: installing component 'cargo'
+info: installing component 'clippy'
+info: installing component 'rust-docs'
+info: installing component 'rust-std'
+info: installing component 'rustc'
+info: installing component 'rustfmt'
+
+  nightly-x86_64-unknown-linux-gnu installed - rustc 1.43.0-nightly (5e7af4669 2020-02-16)
+
+info: checking for self-updates
+info: using existing install for 'nightly-x86_64-unknown-linux-gnu'
+info: default toolchain set to 'nightly-x86_64-unknown-linux-gnu'
+
+  nightly-x86_64-unknown-linux-gnu unchanged - rustc 1.43.0-nightly (5e7af4669 2020-02-16)
+
+info: downloading component 'rust-std' for 'x86_64-unknown-linux-musl'
+info: installing component 'rust-std' for 'x86_64-unknown-linux-musl'
+Removing intermediate container 40f304aff42c
+ ---> 96bdeffefb2b
+Step 9/17 : RUN cargo --version
+ ---> Running in e9df15d6dbfb
+cargo 1.43.0-nightly (3c53211c3 2020-02-07)
+Removing intermediate container e9df15d6dbfb
+ ---> 2e00c87954d3
+Step 10/17 : RUN rustc --version
+ ---> Running in be90be0b1f42
+rustc 1.43.0-nightly (5e7af4669 2020-02-16)
+Removing intermediate container be90be0b1f42
+ ---> 6fe042670844
+Step 11/17 : RUN cargo test; echo $?
+ ---> Running in e16719e1d2cf
+   Compiling cargo-test-doc-docker v0.1.0 (/home/rust/src)
+    Finished test [unoptimized + debuginfo] target(s) in 0.37s
+     Running target/x86_64-unknown-linux-musl/debug/deps/cargo_test_doc_docker-59b221fd7583f093
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/x86_64-unknown-linux-musl/debug/deps/cargo_test_doc_docker-7f9ae80477eeadab
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+0
+Removing intermediate container e16719e1d2cf
+ ---> ab7df4f1ec34
+Step 12/17 : RUN cargo test --release --target=x86_64-unknown-linux-musl; echo $?
+ ---> Running in 704d72b104a0
+   Compiling cargo-test-doc-docker v0.1.0 (/home/rust/src)
+    Finished release [optimized] target(s) in 0.25s
+     Running target/x86_64-unknown-linux-musl/release/deps/cargo_test_doc_docker-de10eaaa4fb8d833
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/x86_64-unknown-linux-musl/release/deps/cargo_test_doc_docker-9f7d2627e1a1c275
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+0
+Removing intermediate container 704d72b104a0
+ ---> ac792b07de2b
+Step 13/17 : RUN rustup toolchain install stable; rustup default stable; rustup target add x86_64-unknown-linux-musl
+ ---> Running in 2524b430e29a
+info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
+info: latest update on 2020-01-30, rust version 1.41.0 (5e1a79984 2020-01-27)
+info: downloading component 'cargo'
+info: downloading component 'clippy'
+info: downloading component 'rust-docs'
+info: downloading component 'rust-std'
+info: downloading component 'rustc'
+info: downloading component 'rustfmt'
+info: installing component 'cargo'
+info: installing component 'clippy'
+info: installing component 'rust-docs'
+info: installing component 'rust-std'
+info: installing component 'rustc'
+info: installing component 'rustfmt'
+
+  stable-x86_64-unknown-linux-gnu installed - rustc 1.41.0 (5e1a79984 2020-01-27)
+
+info: checking for self-updates
+info: using existing install for 'stable-x86_64-unknown-linux-gnu'
+
+info: default toolchain set to 'stable-x86_64-unknown-linux-gnu'
+  stable-x86_64-unknown-linux-gnu unchanged - rustc 1.41.0 (5e1a79984 2020-01-27)
+
+info: downloading component 'rust-std' for 'x86_64-unknown-linux-musl'
+info: installing component 'rust-std' for 'x86_64-unknown-linux-musl'
+Removing intermediate container 2524b430e29a
+ ---> 18b6174e8e8b
+Step 14/17 : RUN cargo --version
+ ---> Running in dd89100e34c1
+cargo 1.41.0 (626f0f40e 2019-12-03)
+Removing intermediate container dd89100e34c1
+ ---> 53e90692b23f
+Step 15/17 : RUN rustc --version
+ ---> Running in 59b74c4a8ce9
+rustc 1.41.0 (5e1a79984 2020-01-27)
+Removing intermediate container 59b74c4a8ce9
+ ---> caba051d9f99
+Step 16/17 : RUN cargo test; echo $?
+ ---> Running in 8478e60947fe
+   Compiling cargo-test-doc-docker v0.1.0 (/home/rust/src)
+    Finished test [unoptimized + debuginfo] target(s) in 0.33s
+     Running target/x86_64-unknown-linux-musl/debug/deps/cargo_test_doc_docker-cfa8cf4a73c67276
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/x86_64-unknown-linux-musl/debug/deps/cargo_test_doc_docker-e1408f179bdfb043
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+0
+Removing intermediate container 8478e60947fe
+ ---> ea0befed03ef
+Step 17/17 : RUN cargo test --release --target=x86_64-unknown-linux-musl; echo $?
+ ---> Running in 22831adc6461
+   Compiling cargo-test-doc-docker v0.1.0 (/home/rust/src)
+    Finished release [optimized] target(s) in 0.28s
+     Running target/x86_64-unknown-linux-musl/release/deps/cargo_test_doc_docker-ee3d33e643480ddd
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/x86_64-unknown-linux-musl/release/deps/cargo_test_doc_docker-dc3b78fcafa784c6
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+0
+Removing intermediate container 22831adc6461
+ ---> f990e661c717
+Successfully built f990e661c717
